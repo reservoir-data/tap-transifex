@@ -24,7 +24,7 @@ class TransifexPaginator(BaseHATEOASPaginator):
     def get_next_url(self, response: Response) -> str | None:
         """Get the next URL from the response."""
         data = response.json()
-        return data.get("links", {}).get("next")
+        return data.get("links", {}).get("next")  # type: ignore[no-any-return]
 
 
 class TransifexStream(RESTStream[t.Any]):

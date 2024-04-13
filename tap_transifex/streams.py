@@ -160,9 +160,9 @@ class Organizations(TransifexStream):
 
     def generate_child_contexts(  # noqa: D102
         self,
-        record: dict,
-        context: dict | None,  # noqa: ARG002
-    ) -> t.Iterable[dict | None]:
+        record: dict[str, t.Any],
+        context: dict[str, t.Any] | None,  # noqa: ARG002
+    ) -> t.Iterable[dict[str, t.Any] | None]:
         yield {
             "organization_id": record["id"],
         }
@@ -190,7 +190,7 @@ class I18nFormats(TransifexStream):
                 ),
                 th.Property(
                     "file_extensions",
-                    th.StringType,
+                    th.ArrayType(th.StringType),
                     description=(
                         "The file name extension association to the media_type."
                     ),
@@ -232,5 +232,5 @@ class I18nFormats(TransifexStream):
     ) -> dict[str, t.Any]:
         """Get URL query parameters."""
         params = super().get_url_params(context, next_page_token)
-        params["filter[organization]"] = context["organization_id"]
+        params["filter[organization]"] = context["organization_id"] if context else None
         return params

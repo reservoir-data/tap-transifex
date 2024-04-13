@@ -42,7 +42,8 @@ optional-dependencies.testing = [
   "singer-sdk[testing]",
 ]
 optional-dependencies.typing = [
-  "mypy",
+  "mypy>=1.8",
+  "types-requests>=2.31",
 ]
 urls.Documentation = "https://github.com/edgarrmondragon/tap-transifex#readme"
 urls.Homepage = "https://github.com/edgarrmondragon/tap-transifex"
