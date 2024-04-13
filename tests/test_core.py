@@ -14,8 +14,6 @@ TestTapTransifex = get_tap_test_class(
     TapTransifex,
     config=SAMPLE_CONFIG,
     suite_config=SuiteConfig(
-        max_records_limit=10,
+        # max_records_limit=10,
     ),
 )
-
-# TODO(edgarrmondragon): Create additional tests as appropriate for your tap.
