@@ -11,6 +11,8 @@ from tap_transifex.client import TransifexStream
 if t.TYPE_CHECKING:
     from urllib.parse import ParseResult
 
+    from singer_sdk.helpers.types import Context
+
 
 class Languages(TransifexStream):
     """Languages stream."""
@@ -161,7 +163,7 @@ class Organizations(TransifexStream):
     def generate_child_contexts(  # noqa: D102
         self,
         record: dict[str, t.Any],
-        context: dict[str, t.Any] | None,  # noqa: ARG002
+        context: Context | None,  # noqa: ARG002
     ) -> t.Iterable[dict[str, t.Any] | None]:
         yield {
             "organization_id": record["id"],
@@ -227,7 +229,7 @@ class I18nFormats(TransifexStream):
 
     def get_url_params(
         self,
-        context: dict[str, t.Any] | None,
+        context: Context | None,
         next_page_token: ParseResult | None,
     ) -> dict[str, t.Any]:
         """Get URL query parameters."""
