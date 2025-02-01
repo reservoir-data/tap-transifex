@@ -14,7 +14,8 @@ keywords = [
   "singer.io",
   "Transifex",
 ]
-license.file = "LICENSE"
+license = "Apache-2.0"
+license-files = [ "LICENSE" ]
 maintainers = [ { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" } ]
 authors = [ { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" } ]
 requires-python = ">=3.9"
@@ -78,7 +79,6 @@ line-length = 88
 
 lint.select = [ "ALL" ]
 lint.ignore = [
-  "ANN101", # missing-type-self
   "COM812", # missing-trailing-comma
   "DJ",     # flake8-django
   "FIX002", # line-contains-todo
@@ -125,3 +125,6 @@ warn_unused_ignores = true
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
 module = [ "backoff.*" ]
+
+[tool.uv]
+required-version = ">=0.5.19"
