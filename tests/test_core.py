@@ -14,6 +14,6 @@ TestTapTransifex = get_tap_test_class(
     TapTransifex,
     config=SAMPLE_CONFIG,
     suite_config=SuiteConfig(
-        # max_records_limit=10,  # noqa: ERA001
+        max_records_limit=100,
     ),
 )
