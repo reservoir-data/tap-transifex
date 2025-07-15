@@ -18,10 +18,9 @@ license = "Apache-2.0"
 license-files = [ "LICENSE" ]
 maintainers = [ { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" } ]
 authors = [ { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" } ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -67,7 +66,7 @@ dependencies = "deptry ."
 [tool.hatch.envs.all]
 template = "test"
 [[tool.hatch.envs.all.matrix]]
-python = [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
+python = [ "3.10", "3.11", "3.12", "3.13" ]
 
 [tool.hatch.envs.typing]
 features = [ "testing", "typing" ]
