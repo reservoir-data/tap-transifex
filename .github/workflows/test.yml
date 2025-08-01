@@ -22,24 +22,22 @@ on:
   # Run weekly on Monday at 12:00 PM UTC
   - cron: "0 12 * * 1"
 
+env:
+  FORCE_COLOR: "1"
+  UV_CONSTRAINT: ${{ github.workspace }}/.github/workflows/constraints.txt
+
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      FORCE_COLOR: "1"
-      PIP_CONSTRAINT: ${{ github.workspace }}/.github/workflows/constraints.txt
     strategy:
       fail-fast: false
       matrix:
-        script: ["test:integration"]
         python-version:
         - "3.10"
         - "3.11"
         - "3.12"
         - "3.13"
-        include:
-        - { script: "test:dependencies", python-version: "3.x" }
-        - { script: "typing:check",      python-version: "3.x" }
+        - "3.14"
 
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -48,25 +46,19 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
-        cache: pip
 
-    - name: Upgrade pip
-      run: |
-        pip install pip
-        pip --version
-
-    - name: Install Hatch
-      run: |
-        pipx install hatch
-        hatch --version
+    - name: Install uv
+      uses: astral-sh/setup-uv@e92bafb6253dcd438e0484186d7669ea7a8ca1cc # v6.4.3
 
     - name: Run tests
       env:
-        HATCH_PYTHON: ${{ steps.setup-python.outputs.python-path }}
         TAP_TRANSIFEX_TOKEN: ${{ secrets.TAP_TRANSIFEX_TOKEN }}
         TAP_TRANSIFEX_START_DATE: ${{ secrets.TAP_TRANSIFEX_START_DATE }}
-      run: |
-        hatch run ${{ matrix.script }}
+      run: >
+        uvx
+        --with tox-gh
+        --with tox-uv
+        tox
 
   pre-commit:
     runs-on: ubuntu-latest
