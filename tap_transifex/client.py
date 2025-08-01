@@ -74,6 +74,6 @@ class TransifexStream(RESTStream[t.Any]):
         params: dict[str, t.Any] = {}
 
         if next_page_token:
-            params.update(parse_qs(next_page_token.query))
+            params |= parse_qs(next_page_token.query)
 
         return params
