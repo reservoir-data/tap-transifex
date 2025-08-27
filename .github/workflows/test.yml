@@ -8,7 +8,7 @@ on:
       - tests/**
       - pyproject.toml
       - .github/workflows/test.yml
-      - .github/workflows/constraints.txt
+      - .github/workflows/requirements.txt
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
@@ -16,7 +16,7 @@ on:
       - tests/**
       - pyproject.toml
       - .github/workflows/test.yml
-      - .github/workflows/constraints.txt
+      - .github/workflows/requirements.txt
   workflow_dispatch:
   schedule:
   # Run weekly on Monday at 12:00 PM UTC
@@ -24,7 +24,7 @@ on:
 
 env:
   FORCE_COLOR: "1"
-  UV_CONSTRAINT: ${{ github.workspace }}/.github/workflows/constraints.txt
+  UV_CONSTRAINT: ${{ github.workspace }}/.github/workflows/requirements.txt
 
 jobs:
   test:
