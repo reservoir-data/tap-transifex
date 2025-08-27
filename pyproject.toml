@@ -32,9 +32,9 @@ dynamic = [
 dependencies = [
   "singer-sdk~=0.48.0",
 ]
-urls.Documentation = "https://github.com/edgarrmondragon/tap-transifex#readme"
-urls.Homepage = "https://github.com/edgarrmondragon/tap-transifex"
-urls.Repository = "https://github.com/edgarrmondragon/tap-transifex"
+urls.Documentation = "https://github.com/reservoir-data/tap-transifex#readme"
+urls.Homepage = "https://github.com/reservoir-data/tap-transifex"
+urls.Repository = "https://github.com/reservoir-data/tap-transifex"
 scripts."tap-transifex" = "tap_transifex.tap:TapTransifex.cli"
 
 [dependency-groups]
