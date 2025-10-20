@@ -7,6 +7,7 @@ on:
       - tap_transifex/**
       - tests/**
       - pyproject.toml
+      - uv.lock
       - .github/workflows/test.yml
       - .github/workflows/requirements.txt
   pull_request:
@@ -15,6 +16,7 @@ on:
       - tap_transifex/**
       - tests/**
       - pyproject.toml
+      - uv.lock
       - .github/workflows/test.yml
       - .github/workflows/requirements.txt
   workflow_dispatch:
