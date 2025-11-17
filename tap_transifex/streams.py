@@ -192,7 +192,7 @@ class I18nFormats(TransifexStream):
                 ),
                 th.Property(
                     "file_extensions",
-                    th.ArrayType(th.StringType),
+                    th.ArrayType(th.StringType),  # ty: ignore[invalid-argument-type]
                     description=(
                         "The file name extension association to the media_type."
                     ),

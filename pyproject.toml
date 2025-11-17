@@ -117,8 +117,8 @@ env_list = [
 ]
 
 [tool.tox.gh.python]
-"3.14" = [ "3.14" ]
-"3.13" = [ "3.13", "dependencies", "typing" ]
+"3.14" = [ "3.14", "dependencies", "typing" ]
+"3.13" = [ "3.13" ]
 "3.12" = [ "3.12" ]
 
 [tool.tox.env_run_base]
