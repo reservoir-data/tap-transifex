@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     name: Build wheel and sdist
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.baipp.outputs.package_version }}
