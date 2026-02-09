@@ -116,16 +116,6 @@ env_list = [
   "3.12",
 ]
 
-[tool.tox.gh.python]
-"3.14" = [ "3.14", "dependencies", "typing" ]
-"3.13" = [ "3.13" ]
-"3.12" = [ "3.12" ]
-
-[tool.tox.env_run_base]
-pass_env = [ "TAP_TRANSIFEX_*" ]
-dependency_groups = [ "testing" ]
-commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
-
 [tool.tox.env.dependencies]
 dependency_groups = [ "testing" ]
 commands = [ [ "deptry", "." ] ]
@@ -139,6 +129,16 @@ commands = [
   [ "mypy", "--strict", { replace = "posargs", default = [ "tap_transifex", "tests" ], extend = true } ],
   [ "ty", "check", { replace = "posargs", default = [ "tap_transifex", "tests" ], extend = true } ],
 ]
+
+[tool.tox.env_run_base]
+pass_env = [ "TAP_TRANSIFEX_*" ]
+dependency_groups = [ "testing" ]
+commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
+
+[tool.tox.gh.python]
+"3.14" = [ "3.14", "dependencies", "typing" ]
+"3.13" = [ "3.13" ]
+"3.12" = [ "3.12" ]
 
 [tool.mypy]
 warn_redundant_casts = true
