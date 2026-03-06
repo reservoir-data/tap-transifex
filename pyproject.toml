@@ -126,7 +126,7 @@ commands = [ [ "tap-transifex", { replace = "posargs", default = [ "--config=ENV
 [tool.tox.env.typing]
 dependency_groups = [ "testing", "typing" ]
 commands = [
-  [ "mypy", "--strict", { replace = "posargs", default = [ "tap_transifex", "tests" ], extend = true } ],
+  [ "mypy", { replace = "posargs", default = [ "tap_transifex", "tests" ], extend = true } ],
   [ "ty", "check", { replace = "posargs", default = [ "tap_transifex", "tests" ], extend = true } ],
 ]
 
@@ -141,6 +141,7 @@ commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = 
 "3.12" = [ "3.12" ]
 
 [tool.mypy]
+strict = true
 warn_redundant_casts = true
 warn_return_any = true
 warn_no_return = true
