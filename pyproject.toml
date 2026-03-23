@@ -29,18 +29,14 @@ dynamic = [
 dependencies = [
   "singer-sdk~=0.54.0a4",
 ]
-
 [[project.authors]]
 name = "Edgar Ramírez-Mondragón"
 email = "edgarrm358@gmail.com"
-
 [[project.maintainers]]
 name = "Edgar Ramírez-Mondragón"
 email = "edgarrm358@gmail.com"
-
 [project.scripts]
 "tap-transifex" = "tap_transifex.tap:TapTransifex.cli"
-
 [project.urls]
 Documentation = "https://github.com/reservoir-data/tap-transifex#readme"
 Homepage = "https://github.com/reservoir-data/tap-transifex"
@@ -70,7 +66,6 @@ required-version = ">=0.5.19"
 
 [tool.ruff]
 line-length = 88
-
 [tool.ruff.lint]
 select = [ "ALL" ]
 ignore = [
@@ -98,7 +93,6 @@ mypy = "mypy"
 pytest = "pytest"
 ty = "ty"
 types-requests = "requests"
-
 [tool.deptry.per_rule_ignores]
 DEP002 = [
   "deptry",
@@ -107,16 +101,23 @@ DEP002 = [
 ]
 
 [tool.pyproject-fmt]
-table_format = "logn"
+table_format = "long"
 
-[tool.pytest.ini_options]
-addopts = "-vvv"
+[tool.pytest]
+addopts = [
+  "-v",
+  "-ra",
+]
+filterwarnings = [ "error" ]
+log_level = "INFO"
+minversion = "9"
+strict = true
+testpaths = [ "tests" ]
 
 [tool.tox]
 min_version = "4.43"
 requires = [
-  "tox>=4.22",
-  "tox-gh>=1.5.0",
+  "tox>=4.43",
   "tox-uv>=1.17",
 ]
 env_list = [
@@ -126,14 +127,11 @@ env_list = [
     { prefix = "3.", start = 12 },
   ] },
 ]
-
 [tool.tox.env.dependencies]
 dependency_groups = [ "testing" ]
 commands = [ [ "deptry", "." ] ]
-
 [tool.tox.env.sync]
 commands = [ [ "tap-transifex", { replace = "posargs", default = [ "--config=ENV" ], extend = true } ] ]
-
 [tool.tox.env.typing]
 dependency_groups = [ "testing", "typing" ]
 commands = [
@@ -146,12 +144,8 @@ pass_env = [ "TAP_TRANSIFEX_*" ]
 dependency_groups = [ "testing" ]
 commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
 
-[tool.tox.gh.python]
-"3.14" = [ "3.14", "dependencies", "typing" ]
-"3.13" = [ "3.13" ]
-"3.12" = [ "3.12" ]
-
 [tool.mypy]
+enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
 strict = true
 warn_redundant_casts = true
 warn_return_any = true
@@ -159,3 +153,6 @@ warn_no_return = true
 warn_unreachable = true
 warn_unused_configs = true
 warn_unused_ignores = true
+
+[tool.ty.rules]
+unused-type-ignore-comment = "ignore"
