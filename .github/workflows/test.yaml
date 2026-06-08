@@ -70,10 +70,11 @@ jobs:
       env:
         TAP_TRANSIFEX_TOKEN: ${{ secrets.TAP_TRANSIFEX_TOKEN }}
         TAP_TRANSIFEX_START_DATE: ${{ secrets.TAP_TRANSIFEX_START_DATE }}
+        MATRIX_PYTHON_VERSION: ${{ matrix.python-version }}
       run: >
         uvx
         --with tox-uv
-        tox -e ${{ matrix.python-version }}
+        tox -e ${MATRIX_PYTHON_VERSION}
 
   lint:
     name: Static analysis
@@ -94,9 +95,8 @@ jobs:
       run: tox -m check
 
   pre-commit:
+    name: pre-commit
     runs-on: ubuntu-24.04
-    env:
-      FORCE_COLOR: "1"
     steps:
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       with:
