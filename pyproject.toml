@@ -26,7 +26,7 @@ dynamic = [
   "version",
 ]
 dependencies = [
-  "singer-sdk~=0.54.0a4",
+  "singer-sdk~=0.54.4",
 ]
 [[project.authors]]
 name = "Edgar Ramírez-Mondragón"
@@ -43,18 +43,17 @@ Source = "https://github.com/reservoir-data/tap-transifex"
 
 [dependency-groups]
 dev = [
+  "deptry>=0.25.1",
   { include-group = "testing" },
   { include-group = "typing" },
 ]
 testing = [
-  "deptry>=0.12",
-  "pytest>=8",
+  "pytest>=9",
   "singer-sdk[testing]",
 ]
 typing = [
-  "mypy>=1.8",
-  "ty>=0.0.1a16",
-  "types-requests>=2.31",
+  "mypy>=2.1",
+  "ty>=0.0.44",
   { include-group = "testing" },
 ]
 
@@ -63,7 +62,7 @@ fallback-version = "0.1.0.dev0"
 source = "vcs"
 
 [tool.uv]
-required-version = ">=0.10"
+required-version = ">=0.11"
 prerelease = "allow"
 preview = true
 
@@ -88,18 +87,6 @@ unfixable = [
 ]
 flake8-annotations.allow-star-arg-any = true
 pydocstyle.convention = "google"
-
-[tool.deptry.package_module_name_map]
-mypy = "mypy"
-pytest = "pytest"
-ty = "ty"
-types-requests = "requests"
-[tool.deptry.per_rule_ignores]
-DEP002 = [
-  "deptry",
-  "mypy",
-  "pytest",
-]
 
 [tool.pyproject-fmt]
 table_format = "long"
@@ -140,7 +127,7 @@ env_list = [
 ]
 [tool.tox.env.dependencies]
 description = "check for unused, missing and transitive dependencies"
-dependency_groups = [ "testing" ]
+dependency_groups = [ "dev" ]
 commands = [ [ "deptry", "." ] ]
 labels = [ "check" ]
 [tool.tox.env.sync]
