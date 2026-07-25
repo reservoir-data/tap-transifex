@@ -1,3 +1,5 @@
+# Copyright (c) 2026
+
 """Tap executable."""
 
 from __future__ import annotations

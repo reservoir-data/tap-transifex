@@ -1,3 +1,5 @@
+# Copyright (c) 2026
+
 """Stream type classes for tap-transifex."""
 
 from __future__ import annotations
@@ -160,10 +162,11 @@ class Organizations(TransifexStream):
         th.Property("type", th.StringType),
     ).to_dict()
 
-    def generate_child_contexts(  # noqa: D102
+    @t.override
+    def generate_child_contexts(
         self,
         record: dict[str, t.Any],
-        context: Context | None,  # noqa: ARG002
+        context: Context | None,
     ) -> t.Iterable[dict[str, t.Any] | None]:
         yield {
             "organization_id": record["id"],
@@ -227,6 +230,7 @@ class I18nFormats(TransifexStream):
         th.Property("organization_id", th.StringType, description="Organization ID."),
     ).to_dict()
 
+    @t.override
     def get_url_params(
         self,
         context: Context | None,

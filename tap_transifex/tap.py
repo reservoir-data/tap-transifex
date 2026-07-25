@@ -1,3 +1,5 @@
+# Copyright (c) 2026
+
 """Transifex tap class."""
 
 from __future__ import annotations

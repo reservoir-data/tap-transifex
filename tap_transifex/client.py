@@ -1,3 +1,5 @@
+# Copyright (c) 2026
+
 """REST client handling, including TransifexStream base class."""
 
 from __future__ import annotations
@@ -22,6 +24,7 @@ class TransifexPaginator(BaseHATEOASPaginator):
     https://developers.transifex.com/reference/api-pagination
     """
 
+    @t.override
     def get_next_url(self, response: Response) -> str | None:
         """Get the next URL from the response."""
         data = response.json()
@@ -53,9 +56,10 @@ class TransifexStream(RESTStream[t.Any]):
         """
         return {"User-Agent": f"{self.tap_name}/{self._tap.plugin_version}"}
 
+    @t.override
     def get_url_params(
         self,
-        context: Context | None,  # noqa: ARG002
+        context: Context | None,
         next_page_token: ParseResult | None,
     ) -> dict[str, t.Any]:
         """Get URL query parameters.
